@@ -54,7 +54,7 @@
           <h3>Mock Scanner</h3>
         </div>
         <div class="modal-body">
-          <form>
+          <form data-bind="submit: completeScan">
             <fieldset>
               <legend>Please enter text to return</legend>
               <div class="control-group">
@@ -249,6 +249,12 @@
           <div id="scan-button" class="unselectable" href="#" data-bind="tap: scanAndCheckInTicket, css: { disabled: $root.qrCheckInServices.isMakingRequest, scanning: isScanning }">Scan Next</div>
         </div>
       </div>
+      <div >
+        <div>
+            Manual: <input type="checkbox" data-bind="checked: wantsManual" />
+        </div>
+      </div>
+        
     </div>
   </div>
 

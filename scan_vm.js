@@ -8,6 +8,7 @@ function ScanViewModel(settingsVM, qrServer, scannerServices) {
 
   this.isScanning = ko.observable(false);
 
+  this.wantsManual = ko.observable(false);
 
   this.updateStatistics = function() {
     self.server.updateStatistics(
@@ -44,7 +45,9 @@ function ScanViewModel(settingsVM, qrServer, scannerServices) {
       },
       function(error) {
         alertWrapper("Scan failed: " + error);
-      }
+      },
+      self.wantsManual()
+            
     );
 
     self.isScanning(false);    
