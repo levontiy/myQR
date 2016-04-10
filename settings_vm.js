@@ -1,9 +1,9 @@
 function SettingsViewModel(qrServer, scannerServices) {
   var self = this;
 
-  this.endpoint = ko.observable('http://tomsarkgh.am:4567/');
-  this.apiUser = ko.observable("my_api_user");
-  this.apiPass = ko.observable("my_api_pass");
+  this.endpoint = ko.observable('http://gorc.loc/');
+  this.apiUser = ko.observable();
+  this.apiPass = ko.observable();
   this.selectedEvent = ko.observable();
 
   this.apiKey = ko.computed(function() {

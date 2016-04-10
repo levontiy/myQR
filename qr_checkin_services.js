@@ -67,7 +67,7 @@ function QRCheckInServices() {
     if (self.isMakingRequest()) {
       return;
     }
-    url = endpointUrl + "/qr_check_in/get_event_statistics/" + apiKey + "/" + event;
+    url = endpointUrl + "/qr_check_in/get_event_statistics/" + encodeURIComponent(apiKey) + "/" + encodeURIComponent(event.replace(/\//g , "--"));
     self.progressMessage("Updating Event Statistics...");
     self.performRemoteEventFunction(
       url,
@@ -83,7 +83,7 @@ function QRCheckInServices() {
       return;
     }
     if (ticketToken != null) {
-      url = endpointUrl + "/qr_check_in/check_in/" + apiKey + "/" + event + "/" + encodeURIComponent(ticketToken);
+      url = endpointUrl + "/qr_check_in/check_in/" + encodeURIComponent(apiKey) + "/" + encodeURIComponent(event.replace(/\//g , "--")) + "/" + encodeURIComponent(ticketToken);
       self.progressMessage("Checking in Ticket...");
       self.performRemoteEventFunction(
         url,
@@ -103,7 +103,7 @@ function QRCheckInServices() {
       return;
     }
     if (ticketToken != null) {
-      url = endpointUrl + "/qr_check_in/check_out/" + apiKey + "/" + event + "/" + encodeURIComponent(ticketToken);
+      url = endpointUrl + "/qr_check_in/check_out/" + encodeURIComponent(apiKey) + "/" + encodeURIComponent(event.replace(/\//g , "--")) + "/" + encodeURIComponent(ticketToken);
       self.progressMessage("Checking Out Ticket...");
       self.performRemoteEventFunction(
         url,
@@ -122,7 +122,7 @@ function QRCheckInServices() {
     if (self.isMakingRequest()) {
       return;
     }
-    url = endpointUrl + "/qr_check_in/perform_manual_checkin/" + apiKey + "/" + event;
+    url = endpointUrl + "/qr_check_in/perform_manual_checkin/" + encodeURIComponent(apiKey) + "/" + encodeURIComponent(event.replace(/\//g , "--"));
     self.progressMessage("Checking In...");
     self.performRemoteEventFunction(url, lastCheckInResultModel, true);
   }
@@ -131,7 +131,7 @@ function QRCheckInServices() {
     if (self.isMakingRequest()) {
       return;
     }
-    url = endpointUrl + "/qr_check_in/perform_pass_out/" + apiKey + "/" + event;
+    url = endpointUrl + "/qr_check_in/perform_pass_out/" + encodeURIComponent(apiKey) + "/" + encodeURIComponent(event.replace(/\//g , "--"));
     self.progressMessage("Updating Venue Count...");
     self.performRemoteEventFunction(url, lastCheckInResultModel, true);
   }
@@ -140,7 +140,7 @@ function QRCheckInServices() {
     if (self.isMakingRequest()) {
       return;
     }
-    url = endpointUrl + "/qr_check_in/perform_pass_in/" + apiKey + "/" + event;
+    url = endpointUrl + "/qr_check_in/perform_pass_in/" + encodeURIComponent(apiKey) + "/" + encodeURIComponent(event.replace(/\//g , "--"));
     self.progressMessage("Updating Venue Count...");
     self.performRemoteEventFunction(url, lastCheckInResultModel, true);
   }
