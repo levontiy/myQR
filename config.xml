@@ -52,8 +52,8 @@
 
     <!-- Plugins can also be added here. -->
     <!--<gap:plugin name="com.phonegap.plugins.barcodescanner" />  latest release -->
-    <gap:plugin name="phonegap-plugin-barcodescanner" /> <!-- latest release -->
-
+    <gap:plugin name="phonegap-plugin-barcodescanner" source="npm" />
+    
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
     <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
