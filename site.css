@@ -313,7 +313,7 @@ button .entypo
 .scan-results-page-section
 {
   position: fixed;
-  top: 230px;
+  top: 290px;
   bottom: 110px;
   left: 0;
   right: 0;
@@ -403,7 +403,8 @@ button .entypo
 
 #scan-button.disabled
 {
-  background-color: #16535A;
+  /*background-color: #16535A;*/
+  background-color: grey;
 }
 
 .scan-result {
@@ -735,4 +736,7 @@ span.clear-search-text-icon input
  END Styles for mock camera dialog
 -----------------------------------------------------
 */
+
+
+
 

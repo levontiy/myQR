@@ -116,10 +116,17 @@
         </div>
 
         <div class="control-group">
-          <label class="control-label" for="apiKey">API Key *</label>
+          <label class="control-label" for="apiUser">Username *</label>
           <div class="controls">
-            <input name="apiKey" id="textinput3" placeholder="e.g. gsSF67sdx" class="required input-xxlarge" data-bind="value: apiKey" type="text" />
-            <p class="help-block">The remote service API Key.</p>
+            <input name="apiUser" id="textinput3" placeholder="armen" class="required input-xxlarge" data-bind="value: apiUser" type="text" />
+            <!--<p class="help-block">The remote service API Key.</p>-->
+          </div>
+        </div>      
+        <div class="control-group">
+          <label class="control-label" for="apiPass">Password *</label>
+          <div class="controls">
+            <input name="apiPass" id="textinput4" placeholder="e.g. gsSF67sdx" class="required input-xxlarge" data-bind="value: apiPass" type="text" />
+            <!--<p class="help-block">The remote service API Key.</p>-->
           </div>
         </div>      
       </fieldset>
@@ -193,7 +200,7 @@
         <div class="span12">
           <strong>Log In Details</strong><br>
           Endpoint: <span data-bind="text: endpoint"></span><br>
-          API Key: <span data-bind="text: apiKey"></span><br>
+          API User: <span data-bind="text: apiUser"></span><br>
           <a class="btn btn-small" id="clear-details-link" data-bind="click: clearDetails" href="#"><i class="icon-trash"></i> Clear Details</a>
         </div>
       </div>
@@ -251,7 +258,7 @@
       </div>
       <div >
         <div>
-            Manual: <input type="checkbox" data-bind="checked: wantsManual" />
+            Manual: <input type="checkbox" data-bind="checked: wantsManual" style="width: 30px; height: 30px;" />
         </div>
       </div>
         

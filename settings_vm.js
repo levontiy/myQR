@@ -1,10 +1,14 @@
 function SettingsViewModel(qrServer, scannerServices) {
   var self = this;
 
-  this.endpoint = ko.observable();
-  this.apiKey = ko.observable();
+  this.endpoint = ko.observable('http://tomsarkgh.am:4567/');
+  this.apiUser = ko.observable("my_api_user");
+  this.apiPass = ko.observable("my_api_pass");
   this.selectedEvent = ko.observable();
 
+  this.apiKey = ko.computed(function() {
+        return this.apiUser() + "|" + this.apiPass();
+       }, this);
 
   this.hasSelectedEventError = ko.observable(false);
 
@@ -20,13 +24,14 @@ function SettingsViewModel(qrServer, scannerServices) {
   });
 
   var mapping = {
-    'include': ["endpoint", "apiKey"]
+    'include': ["endpoint", "apiUser", "apiPass"]
   }
 
   this.clearDetails = function() {
     self.server.isLoggedIn(false);
     self.endpoint(null);
-    self.apiKey(null);
+    self.apiUser(null);
+    self.apiPass(null);
     self.selectedEvent(null);
     self.hasSelectedEventError(false);
   }
@@ -56,7 +61,9 @@ function SettingsViewModel(qrServer, scannerServices) {
           if (stringifiedObject != null) {
             var reconstitutedObject = JSON.parse(stringifiedObject);
             self.endpoint(reconstitutedObject.e);
-            self.apiKey(reconstitutedObject.a);
+//            self.apiKey(reconstitutedObject.a);
+            self.apiUser(reconstitutedObject.u);
+            self.apiPass(reconstitutedObject.p);
           }
         }
       },

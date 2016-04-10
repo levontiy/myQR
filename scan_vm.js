@@ -9,6 +9,7 @@ function ScanViewModel(settingsVM, qrServer, scannerServices) {
   this.isScanning = ko.observable(false);
 
   this.wantsManual = ko.observable(false);
+  this.wantsCheckout = ko.observable(false);
 
   this.updateStatistics = function() {
     self.server.updateStatistics(
