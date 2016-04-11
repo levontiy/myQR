@@ -27,14 +27,12 @@ function QRCheckInServices() {
   this.allowManualCheckins = ko.observable(false);
 
   this.checkEndpoint = function(endpointUrl, apiKey, loginCallback) {
-    alert('starting')
     
     if (self.isMakingRequest()) {
       return;
     }
     self.isLoggedIn(false);
     self.isMakingRequest(true);
-    alert(endpointUrl + "/qr_check_in/check_endpoint/" + apiKey)
     
     $.ajax({
       type: 'GET',
@@ -42,7 +40,7 @@ function QRCheckInServices() {
       dataType: 'json',
       error: function(xhr, ajaxOptions, thrownError) {
         self.isMakingRequest(false);
-        alertWrapper("Error logging in! "+ajaxOptions+thrownError);
+        alertWrapper("Error logging in!");
       },
       success: function(event, data, status, xhr) {
         self.isMakingRequest(false);
