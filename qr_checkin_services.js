@@ -38,7 +38,7 @@ function QRCheckInServices() {
       dataType: 'json',
       error: function(xhr, ajaxOptions, thrownError) {
         self.isMakingRequest(false);
-        alertWrapper("Error logging in!");
+        alertWrapper("Error logging in! "+ajaxOptions+thrownError);
       },
       success: function(event, data, status, xhr) {
         self.isMakingRequest(false);
