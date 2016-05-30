@@ -52,7 +52,9 @@ function SearchPageViewModel(settingsVM, qrServer) {
 
 	  url = self.settingsPageViewModel.endpoint() + "/qr_check_in/search/" + 
 	    self.settingsPageViewModel.apiKey() + "/" + 
-	    encodeURIComponent(self.settingsPageViewModel.selectedEvent()) + "/" + encodeURIComponent(self.name());
+	    encodeURIComponent(self.settingsPageViewModel.selectedEvent().replace(/\//g , "--")) + "/" + encodeURIComponent(self.name());
+    
+//      url = endpointUrl + "/qr_check_in/check_out/" + encodeURIComponent(apiKey) + "/" + encodeURIComponent(event.replace(/\//g , "--")) + "/" + encodeURIComponent(ticketToken);
 
     $.ajax({
       type: 'GET',
@@ -62,8 +64,12 @@ function SearchPageViewModel(settingsVM, qrServer) {
         alertWrapper("Error contacting server");
         self.server.isMakingRequest(false);
       },
-      success: function(event, data, status, xhr) {
-        self.results(ko.mapping.fromJS(event, self.resultsMapping));
+//      success: function(event, data, status, xhr) {
+      success: function(mydata, data, status, xhr) {
+//        self.results(ko.mapping.fromJS(event, self.resultsMapping));
+
+        $('#searchResult').html(mydata.result)
+//        console.log(data)
         self.server.isMakingRequest(false);
       }
     });

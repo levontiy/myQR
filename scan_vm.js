@@ -115,7 +115,7 @@ function ScanViewModel(settingsVM, qrServer, scannerServices) {
       
       
     $.getJSON(url, function( data ) {
-        console.log(data)
+//        console.log(data)
         ClearSomeLocalStorage(keyPrefix)
       $.each( data, function( ticketToken, val ) {
         var key = keyPrefix+ticketToken;
