@@ -100,6 +100,59 @@ function QRCheckInServices() {
     }
   }
 
+
+this.checkInTicketOffline = function(event, ticketToken, lastCheckInResultModel, checkedInObservable) {
+    
+    if (ticketToken != null) {
+//      url = endpointUrl + "/qr_check_in/check_in/" + encodeURIComponent(apiKey) + "/" + encodeURIComponent(event.replace(/\//g , "--")) + "/" + encodeURIComponent(ticketToken);
+      self.progressMessage("Checking in Ticket Offline...");
+      
+      
+
+        var keyPrefix = "qrcheckin.tickets."+event+".";
+        var key = keyPrefix+ticketToken;
+        
+      var  ticket = JSON.parse(localStorage.getItem(key));
+      
+      if(ticket && ! ticket.is_in)
+      {
+          if (1 && checkedInObservable != null) {
+            checkedInObservable(true);
+          }
+
+        ticket.is_in = true;
+        localStorage.setItem(key, JSON.stringify(ticket))
+        
+        lastCheckInResultModel.success(1);
+//        lastCheckInResultModel.errorMessage("error_message");
+        lastCheckInResultModel.successMessage("Success");
+        
+      }
+      else
+      {
+        lastCheckInResultModel.success(0);
+        
+        if(ticket && ticket.is_in)
+        {
+            lastCheckInResultModel.errorMessage("ALREADY IN");
+        }
+        else
+        {
+            lastCheckInResultModel.errorMessage("TICKET NOT FOUND");
+        }
+        
+          
+      }
+    }
+    lastCheckInResultModel.haveResult(1);
+//    alert('done')
+  }
+
+
+
+
+
+
   this.checkOutTicket = function(endpointUrl, apiKey, event, ticketToken, lastCheckInResultModel, checkedInObservable) {
     if (self.isMakingRequest()) {
       return;

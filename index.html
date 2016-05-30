@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>QR Check In</title>
+	<title>Check In</title>
 
   <script src="jquery-1.9.1.min.js"></script>
 
@@ -259,6 +259,10 @@
       <div >
         <div>
             Manual: <input type="checkbox" data-bind="checked: wantsManual" style="width: 30px; height: 30px;" />
+            &nbsp;&nbsp;Work offline: <input type="checkbox" data-bind="checked: wantsOffline" style="width: 30px; height: 30px;" />
+        </div>
+        <div  data-bind="visible: wantsOffline">
+            <a href="#" class="btn btn-inverse" data-bind="click: $root.scanViewModel.Sync, css: { disabled: $root.qrCheckInServices.isMakingRequest }"><span class="entypo">Sync</span></a>&nbsp;
         </div>
       </div>
         
