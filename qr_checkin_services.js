@@ -121,6 +121,9 @@ this.checkInTicketOffline = function(event, ticketToken, lastCheckInResultModel,
           }
 
         ticket.is_in = true;
+        ticket.local_change = true;
+        ticket.local_time = new Date().toISOString();
+        
         localStorage.setItem(key, JSON.stringify(ticket))
         
         lastCheckInResultModel.success(1);

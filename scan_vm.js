@@ -112,20 +112,36 @@ function ScanViewModel(settingsVM, qrServer, scannerServices) {
       
     var keyPrefix = "qrcheckin.tickets."+event+".";
         
+
       
+    localIns = getLocalIns(keyPrefix)
       
-    $.getJSON(url, function( data ) {
+    $.post(url, {'ins': localIns}, function( data ) {
 //        console.log(data)
-        ClearSomeLocalStorage(keyPrefix)
+      ClearSomeLocalStorage(keyPrefix)
       $.each( data, function( ticketToken, val ) {
         var key = keyPrefix+ticketToken;
         localStorage.setItem(key, JSON.stringify(val))
-        
+
       });
-     alert('downloaded '+Object.keys(data).length+' tickets')
+      
+      alert('Sent '+Object.keys(localIns).length+', downloaded '+Object.keys(data).length+' ')
 
-    });
-
+    })
+      
+    return;  
+      
+//    $.getJSON(url, function( data ) {
+////        console.log(data)
+//        ClearSomeLocalStorage(keyPrefix)
+//      $.each( data, function( ticketToken, val ) {
+//        var key = keyPrefix+ticketToken;
+//        localStorage.setItem(key, JSON.stringify(val))
+//        
+//      });
+//     alert('downloaded '+Object.keys(data).length+' tickets')
+//
+//    });
     
 //    self.settingsPageViewModel.endpoint(),
 //    self.settingsPageViewModel.apiKey(),
@@ -146,3 +162,26 @@ function ClearSomeLocalStorage(startsWith) {
             } 
         }); 
 }
+
+function getLocalIns(startsWith) {
+    var myLength = startsWith.length;
+
+    tmpList = {};
+    Object.keys(localStorage) 
+        .forEach(function(key){ 
+            if (key.substring(0,myLength) == startsWith) {
+                var ticket = JSON.parse(localStorage.getItem(key));
+                
+                if(ticket && ticket.is_in /* && ticket.local_change */) //todo uncomment for future events
+                {
+                    code = key.substring(myLength)
+
+                    tmpList[code] = {is_in: 1, local_time: ticket.local_time}
+
+                }
+            } 
+        });
+        
+    return tmpList
+}
+

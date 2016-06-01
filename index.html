@@ -263,6 +263,8 @@
         </div>
         <div  data-bind="visible: wantsOffline">
             <a href="#" class="btn btn-inverse" data-bind="click: $root.scanViewModel.Sync, css: { disabled: $root.qrCheckInServices.isMakingRequest }"><span class="entypo">Sync</span></a>&nbsp;
+
+            <input type="hidden" id="tmpInput">
         </div>
       </div>
         
