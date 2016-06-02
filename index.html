@@ -51,16 +51,16 @@
     <div class="span12">
       <div class="modal in">
         <div class="modal-header">
-          <h3>Mock Scanner</h3>
+          <h3>Manual Scanner</h3>
         </div>
         <div class="modal-body">
           <form data-bind="submit: completeScan">
             <fieldset>
               <legend>Please enter text to return</legend>
               <div class="control-group">
-                <label class="control-label" for="endpoint">Text *</label>
+                <!--<label class="control-label" for="endpoint">Text *</label>-->
                 <div class="controls">
-                  <input name="endpoint" class="required input-xxlarge" data-bind="value: scanText" type="text" />
+                  <input name="endpoint" class="required input-xxlarge" data-bind="value: scanText" type="number" />
                 </div>
               </div>
 
@@ -264,7 +264,6 @@
         <div  data-bind="visible: wantsOffline">
             <a href="#" class="btn btn-inverse" data-bind="click: $root.scanViewModel.Sync, css: { disabled: $root.qrCheckInServices.isMakingRequest }"><span class="entypo">Sync</span></a>&nbsp;
 
-            <input type="hidden" id="tmpInput">
         </div>
       </div>
         
@@ -353,7 +352,7 @@
           <div class="search-input-container">
             <!-- ko if: !$root.qrCheckInServices.isMakingRequest() -->
               <span class="clear-search-text-icon">
-                <input type="text" class="input-xlarge search-input" data-bind="value: name">
+                <input type="number" class="input-xlarge search-input" data-bind="value: name">
                 <span data-bind="click: clearSearchTerm"><span class="entypo">&#9003;</span></span>
               </span>
             <!-- /ko -->

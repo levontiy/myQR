@@ -102,6 +102,7 @@ function ScanViewModel(settingsVM, qrServer, scannerServices) {
   
   this.Sync = function() {
 //    alert('starting sync..')
+    self.server.isMakingRequest(true);
 
     var endpointUrl = self.settingsPageViewModel.endpoint();
     var apiKey = self.settingsPageViewModel.apiKey();
@@ -118,13 +119,14 @@ function ScanViewModel(settingsVM, qrServer, scannerServices) {
       
     $.post(url, {'ins': localIns}, function( data ) {
 //        console.log(data)
-      ClearSomeLocalStorage(keyPrefix)
+      self.server.isMakingRequest(false);
+      ClearSomeLocalStorage(keyPrefix);
       $.each( data, function( ticketToken, val ) {
         var key = keyPrefix+ticketToken;
         localStorage.setItem(key, JSON.stringify(val))
 
       });
-      
+      self.updateStatistics()
       alert('Sent '+Object.keys(localIns).length+', downloaded '+Object.keys(data).length+' ')
 
     })
@@ -172,7 +174,7 @@ function getLocalIns(startsWith) {
             if (key.substring(0,myLength) == startsWith) {
                 var ticket = JSON.parse(localStorage.getItem(key));
                 
-                if(ticket && ticket.is_in /* && ticket.local_change */) //todo uncomment for future events
+                if(ticket && ticket.is_in && ticket.local_change ) //todo uncomment for future events
                 {
                     code = key.substring(myLength)
 
