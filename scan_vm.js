@@ -40,7 +40,7 @@ function ScanViewModel(settingsVM, qrServer, scannerServices) {
           if(result.format=='EAN_13')
           {
               ck = eanCheckDigit(ticketToken)
-              if(ck)
+              if(!ck)
               {
                   alert("Scanner failed, retry")
                   return false;
