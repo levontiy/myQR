@@ -51,8 +51,8 @@ function ScanViewModel(settingsVM, qrServer, scannerServices) {
                   ticketToken = pad(ticketToken, 12)
               }
           }
-          alert(ticketToken)
-          alert(result.format)
+//          alert(ticketToken)
+//          alert(result.format)
 
           if(self.wantsOffline())
           {
