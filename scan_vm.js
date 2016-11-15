@@ -37,6 +37,22 @@ function ScanViewModel(settingsVM, qrServer, scannerServices) {
         if (!result.cancelled) {
           ticketToken = result.text;
           
+          if(result.format=='EAN_13')
+          {
+              ck = eanCheckDigit(ticketToken)
+              if(ck)
+              {
+                  alert("Scanner failed, retry")
+                  return false;
+              }
+              else
+              {
+                  ticketToken = ticketToken.slice(0, -1);
+                  ticketToken = pad(ticketToken, 12)
+              }
+          }
+          alert(ticketToken)
+          alert(result.format)
 
           if(self.wantsOffline())
           {
@@ -187,3 +203,34 @@ function getLocalIns(startsWith) {
     return tmpList
 }
 
+
+
+
+String.prototype.reverse =
+function()
+{
+	splitext = this.split("");
+	revertext = splitext.reverse();
+	reversed = revertext.join("");
+	return reversed;
+}
+
+// function to calculate EAN / UPC checkdigit
+function eanCheckDigit(s)
+{
+	var result = 0;
+	var rs = s.reverse();
+	for (counter = 0; counter < rs.length; counter++)
+	{
+		result = result + parseInt(rs.charAt(counter)) * Math.pow(3, ((counter+1) % 2));
+	}
+	return (10 - (result % 10)) % 10;
+}
+
+
+
+function pad(n, width, z) {
+  z = z || '0';
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
