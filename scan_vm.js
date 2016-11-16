@@ -36,6 +36,8 @@ function ScanViewModel(settingsVM, qrServer, scannerServices) {
       function(result) {
         if (!result.cancelled) {
           ticketToken = result.text;
+          alert('read:'+ticketToken)
+          alert(result.format)
           
           if(result.format=='EAN_13')
           {
@@ -51,8 +53,7 @@ function ScanViewModel(settingsVM, qrServer, scannerServices) {
                   ticketToken = pad(ticketToken, 12)
               }
           }
-//          alert(ticketToken)
-//          alert(result.format)
+          alert('cleaned:'+ticketToken)
 
           if(self.wantsOffline())
           {
